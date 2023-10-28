@@ -7,7 +7,10 @@
 [node name="world" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 14, 10 )
+position = Vector2( 425, 306 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="EnemyTest" parent="." instance=ExtResource( 2 )]
 position = Vector2( 153, 174 )
