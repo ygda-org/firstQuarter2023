@@ -3,10 +3,22 @@ extends KinematicBody2D
 var SPEED = 200
 var velocity = Vector2()
 var direction = 0
-var CLAW = preload("res://Claw.tscn")
+var CLAW = preload("res://Claw/Claw.tscn")
 var dirList = ["Up", "Down", "Left", "Right"]
+var mouse_position = Vector2()
+var mouse_distance = Vector2()
+var mouse_angle = 0
+var claw_distance = Vector2()
 
 func _physics_process(delta):
+	#find the position of mouse and find the angle
+	mouse_position = get_global_mouse_position()
+	mouse_distance = mouse_position - position
+	if mouse_distance.x == 0:
+		mouse_distance.x = 0.1
+	if mouse_distance.y == 0:
+		mouse_distance.y = 0.1
+	mouse_angle = atan(mouse_distance.y/mouse_distance.x)*(180/PI)
 	if(Input.is_action_pressed("ui_right")):
 		velocity.x = 1
 		direction = 3
@@ -27,24 +39,17 @@ func _physics_process(delta):
 		$CollisionPolygon2D.rotation_degrees = 90
 	else:
 		$CollisionPolygon2D.rotation_degrees = 0
-	if(velocity.x != 0 or velocity.y != 0):	
+	if(velocity.x != 0 or velocity.y != 0):
 		$AnimationPlayer.play("walk" + dirList[direction])
 	else:
 		$AnimationPlayer.play("idle" + dirList[direction])
-	if Input.is_action_just_pressed("ui_select"):
+	if Input.is_action_just_pressed("mouse_left"):
 		var claw = CLAW.instance()
-		if dirList[direction] == "Right":
-			claw.position = $Claw_PositionRight.global_position
-			claw.rotation_degrees = 0
-		elif dirList[direction] == "Left":
-			claw.position = $Claw_PositionLeft.global_position
-			claw.rotation_degrees = 0
-		elif dirList[direction] == "Up":
-			claw.position = $Claw_PositionUp.global_position
-			claw.rotation_degrees = 90
-		else:
-			claw.position = $Claw_PositionDown.global_position
-			claw.rotation_degrees = 90
-		#claw._set_claw_direction(direction)
+		#set the angle of the claw to the angle we found, and set the distance of the claw to 60 units away from claw_position
+		claw_distance = 60*(position.direction_to(mouse_position))
+		claw.position = $Claw_Position.global_position + Vector2(claw_distance)
+		claw.rotation_degrees = mouse_angle
 		get_parent().add_child(claw)
 	move_and_slide(velocity * SPEED)
+	
+	
