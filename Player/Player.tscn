@@ -174,3 +174,6 @@ frame = 12
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -26, 11, -25, 17, -16, 29, 21, 29, 21, 3, -4, 3, -9, -6, -27, -2 )
+
+[node name="Claw_Position" type="Position2D" parent="."]
+position = Vector2( -63, 9 )
