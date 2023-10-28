@@ -16,3 +16,4 @@ func _on_Area2D_body_exited(body):
 func _physics_process(delta):
 	if(is_overlap and Input.is_action_pressed("ui_key_e")):
 		queue_free()
+#testing
