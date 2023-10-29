@@ -4,5 +4,7 @@ extends Node
 var item_picked_up = false
 
 
-#bullet
-var bullet_velocity = Vector2()
+#fishbowl
+var player_position = Vector2()
+var on_head = false
+var fish_bowl_dead = false
