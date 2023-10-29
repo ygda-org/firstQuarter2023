@@ -186,7 +186,7 @@ anims/walkRight = SubResource( 5 )
 anims/walkUp = SubResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 9.53674e-07, 9.53674e-07 )
+position = Vector2( 0, -8 )
 scale = Vector2( 1.90625, 1.90625 )
 texture = ExtResource( 1 )
 hframes = 12
@@ -197,5 +197,5 @@ frame = 12
 position = Vector2( 0, 8 )
 shape = SubResource( 11 )
 
-[node name="Claw_Position" type="Position2D" parent="."]
-position = Vector2( -5, 10 )
+[node name="Attack_Position" type="Position2D" parent="."]
+position = Vector2( -1, 4 )
