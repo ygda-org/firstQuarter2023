@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://houseEnemies/Roomba/Roomba.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 39.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 32.0624
+
+[node name="roombaEnemy" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Bounce_hit_box" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounce_hit_box"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="RoombaPause" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="Bounce_hit_box" to="." method="_on_Bounce_hit_box_body_entered"]
+[connection signal="timeout" from="RoombaPause" to="." method="_on_RoombaPause_timeout"]
