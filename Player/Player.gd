@@ -11,9 +11,11 @@ var mouse_angle = 0
 var claw_distance = Vector2()
 var current_hotbar = 1
 const BULLET = preload("res://Bullet.tscn")
+var on_head_counter = 10
 
 func _physics_process(delta):
 	#find the position of mouse and find the angle
+	Global.player_position = position
 	mouse_position = get_global_mouse_position()
 	mouse_distance = mouse_position - position
 	if mouse_distance.x == 0:
@@ -48,19 +50,25 @@ func _physics_process(delta):
 		$AnimationPlayer.play("walk" + dirList[direction])
 	else:
 		$AnimationPlayer.play("idle" + dirList[direction])
-	if Input.is_action_just_pressed("mouse_left") and current_hotbar == 1:
-		var claw = CLAW.instance()
-		#set the angle of the claw to the angle we found, and set the distance of the claw to 60 units away from claw_position
-		claw_distance = 30*(position.direction_to(mouse_position))
-		claw.position = $Attack_Position.global_position + Vector2(claw_distance)
-		claw.rotation_degrees = mouse_angle
-		get_parent().add_child(claw)
-	if Input.is_action_just_pressed("mouse_left") and current_hotbar == 2:
-		var bullet = BULLET.instance()
-		Global.bullet_velocity = 10 * (position.direction_to(mouse_position))
-		bullet.rotation_degrees = mouse_angle
-		get_parent().add_child(bullet)
-		bullet.position = $Attack_Position.global_position
+	if Global.on_head == false:
+		if Input.is_action_just_pressed("mouse_left") and current_hotbar == 1:
+			var claw = CLAW.instance()
+			#set the angle of the claw to the angle we found, and set the distance of the claw to 60 units away from claw_position
+			claw_distance = 30*(position.direction_to(mouse_position))
+			claw.position = $Attack_Position.global_position + Vector2(claw_distance)
+			claw.rotation_degrees = mouse_angle
+			get_parent().add_child(claw)
+		if Input.is_action_just_pressed("mouse_left") and current_hotbar == 2:
+			var bullet = BULLET.instance()
+			bullet.rotation_degrees = mouse_angle
+			get_parent().add_child(bullet)
+			bullet.position = $Attack_Position.global_position
+			bullet.velocity = 10 * (position.direction_to(mouse_position))
+	if Global.on_head == true:
+		if Input.is_action_just_pressed("mouse_left"):
+			on_head_counter -=1
+			if on_head_counter == 0:
+				Global.fish_bowl_dead = true
 	if Input.is_action_pressed("ui_key_e"):
 		if current_hotbar != 2:
 			current_hotbar+=1
