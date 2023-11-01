@@ -199,3 +199,8 @@ shape = SubResource( 11 )
 
 [node name="Attack_Position" type="Position2D" parent="."]
 position = Vector2( -1, 4 )
+
+[node name="Dash_Length" type="Timer" parent="."]
+wait_time = 0.15
+
+[connection signal="timeout" from="Dash_Length" to="." method="_on_Dash_Length_timeout"]

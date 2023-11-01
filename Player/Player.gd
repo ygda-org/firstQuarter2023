@@ -10,11 +10,12 @@ var mouse_distance = Vector2()
 var mouse_angle = 0
 var claw_distance = Vector2()
 var current_hotbar = 1
-const BULLET = preload("res://Bullet.tscn")
+const BULLET = preload("res://Bullet/Bullet.tscn")
 var on_head_counter = 10
+var dash_lock = false
 
 func _physics_process(delta):
-	#find the position of mouse and find the angle
+	## CURSOR TRACKING
 	Global.player_position = position
 	mouse_position = get_global_mouse_position()
 	mouse_distance = mouse_position - position
@@ -26,22 +27,31 @@ func _physics_process(delta):
 		mouse_angle = atan(mouse_distance.y/mouse_distance.x)*(180/PI)+180
 	else:
 		mouse_angle = atan(mouse_distance.y/mouse_distance.x)*(180/PI)
-	if(Input.is_action_pressed("ui_right")):
+	## MOVEMENT
+	if(Input.is_action_pressed("ui_right") and dash_lock == false):
 		velocity.x = 1
 		direction = 3
-	elif(Input.is_action_pressed("ui_left")):
+	elif(Input.is_action_pressed("ui_left") and dash_lock == false):
 		velocity.x = -1
 		direction = 2 
 	else: 
-		velocity.x = 0
-	if(Input.is_action_pressed("ui_down")):
+		if dash_lock == false:
+			velocity.x = 0
+	if(Input.is_action_pressed("ui_down") and dash_lock == false):
 		velocity.y = 1
 		direction = 1
-	elif(Input.is_action_pressed("ui_up")):
+	elif(Input.is_action_pressed("ui_up") and dash_lock == false):
 		velocity.y = -1
 		direction = 0
 	else:
-		velocity.y = 0	
+		if dash_lock == false:
+			velocity.y = 0	
+	## DASH
+	if Input.is_action_pressed("tab") and dash_lock == false:
+		dash_lock = true
+		SPEED = 500
+		$Dash_Length.start()
+	## DIRECTIONS
 	if dirList[direction] == "Right" or dirList[direction] == "Left":
 		$CollisionPolygon2D.rotation_degrees = 90
 	else:
@@ -50,10 +60,10 @@ func _physics_process(delta):
 		$AnimationPlayer.play("walk" + dirList[direction])
 	else:
 		$AnimationPlayer.play("idle" + dirList[direction])
+	## FISH BOWL
 	if Global.on_head == false:
 		if Input.is_action_just_pressed("mouse_left") and current_hotbar == 1:
 			var claw = CLAW.instance()
-			#set the angle of the claw to the angle we found, and set the distance of the claw to 60 units away from claw_position
 			claw_distance = 30*(position.direction_to(mouse_position))
 			claw.position = $Attack_Position.global_position + Vector2(claw_distance)
 			claw.rotation_degrees = mouse_angle
@@ -69,7 +79,8 @@ func _physics_process(delta):
 			on_head_counter -=1
 			if on_head_counter == 0:
 				Global.fish_bowl_dead = true
-	if Input.is_action_pressed("ui_key_e"):
+	## INVENTORY
+	if Input.is_action_just_pressed("ui_key_e"):
 		if current_hotbar != 2:
 			current_hotbar+=1
 		else:
@@ -78,3 +89,8 @@ func _physics_process(delta):
 	move_and_slide(velocity * SPEED)
 	
 	
+
+## END OF DASH
+func _on_Dash_Length_timeout():
+	SPEED = 200
+	dash_lock = false
