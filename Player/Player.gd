@@ -14,6 +14,7 @@ const BULLET = preload("res://Bullet/Bullet.tscn")
 var on_head_counter = 10
 var dash_lock = false
 
+
 func _physics_process(delta):
 	## CURSOR TRACKING
 	Global.player_position = position
@@ -45,11 +46,11 @@ func _physics_process(delta):
 		direction = 0
 	else:
 		if dash_lock == false:
-			velocity.y = 0	
+			velocity.y = 0
 	## DASH
 	if Input.is_action_pressed("tab") and dash_lock == false:
 		dash_lock = true
-		SPEED = 500
+		SPEED *= 3
 		$Dash_Length.start()
 	## DIRECTIONS
 	if dirList[direction] == "Right" or dirList[direction] == "Left":
@@ -88,9 +89,11 @@ func _physics_process(delta):
 		
 	move_and_slide(velocity * SPEED)
 	
-	
+func _roomba_ride():
+	SPEED = 400
 
 ## END OF DASH
 func _on_Dash_Length_timeout():
-	SPEED = 200
+	SPEED = SPEED / 3
 	dash_lock = false
+
