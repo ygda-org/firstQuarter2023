@@ -19,7 +19,10 @@ func _ready():
 #	pass\
 func _physics_process(delta):
 	move_and_slide(velocity)
-	
+	if get_slide_count()  > 0:
+		for i in range(get_slide_count()):
+			if "Player" in get_slide_collision(i).collider.name:
+				get_slide_collision(i).collider._damage()
 
 
 
@@ -48,3 +51,5 @@ func _on_RoombaPause_timeout():
 func _dead():
 	queue_free()
 	
+	
+

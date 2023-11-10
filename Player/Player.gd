@@ -14,6 +14,7 @@ const BULLET = preload("res://Bullet/Bullet.tscn")
 var on_head_counter = 10
 var dash_lock = false
 
+
 func _physics_process(delta):
 	## CURSOR TRACKING
 	Global.player_position = position
@@ -47,7 +48,7 @@ func _physics_process(delta):
 		if dash_lock == false:
 			velocity.y = 0	
 	## DASH
-	if Input.is_action_pressed("tab") and dash_lock == false:
+	if Input.is_action_just_pressed("tab") and dash_lock == false:
 		dash_lock = true
 		SPEED = 500
 		$Dash_Length.start()
@@ -89,8 +90,32 @@ func _physics_process(delta):
 	move_and_slide(velocity * SPEED)
 	
 	
+	
 
 ## END OF DASH
 func _on_Dash_Length_timeout():
 	SPEED = 200
 	dash_lock = false
+
+
+func _dead():
+	set_physics_process(false)
+	set_physics_process(false)
+	$CollisionPolygon2D.set_deferred("disabled",true)
+	velocity.x = 0
+	velocity.y = 0
+	get_tree().change_scene("res://world.tscn")
+	Global.health = 3
+	
+func _damage():
+	Global.health -=1
+	if Global.health <= 0:
+		_dead()
+	else:
+		$iFrames.start()
+		$CollisionPolygon2D.set_deferred("disabled",true)
+
+
+func _on_iFrames_timeout():
+	$CollisionPolygon2D.set_deferred("disabled", false)
+	pass # Replace with function body.

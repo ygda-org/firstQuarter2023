@@ -203,4 +203,8 @@ position = Vector2( -1, 4 )
 [node name="Dash_Length" type="Timer" parent="."]
 wait_time = 0.15
 
+[node name="iFrames" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="timeout" from="Dash_Length" to="." method="_on_Dash_Length_timeout"]
+[connection signal="timeout" from="iFrames" to="." method="_on_iFrames_timeout"]
