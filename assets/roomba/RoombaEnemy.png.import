@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RoombaTransformation.png-bd003c78fb75c3df6db6d1980fe6ccb4.stex"
+path="res://.import/RoombaEnemy.png-d286c6c9a120b8a22de951edf10d34af.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/RoombaTransformation.png"
-dest_files=[ "res://.import/RoombaTransformation.png-bd003c78fb75c3df6db6d1980fe6ccb4.stex" ]
+source_file="res://assets/roomba/RoombaEnemy.png"
+dest_files=[ "res://.import/RoombaEnemy.png-d286c6c9a120b8a22de951edf10d34af.stex" ]
 
 [params]
 

@@ -1,8 +1,21 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=88 format=2]
 
 [ext_resource path="res://houseEnemies/Roomba/Roomba.gd" type="Script" id=1]
-[ext_resource path="res://assets/RoombaTransformation.png" type="Texture" id=2]
-[ext_resource path="res://assets/RoombaEnemy.png" type="Texture" id=3]
+[ext_resource path="res://assets/roomba/RoombaTransformation.png" type="Texture" id=2]
+[ext_resource path="res://assets/roomba/RoombaEnemy.png" type="Texture" id=3]
+[ext_resource path="res://assets/roomba/redRoomba.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=83]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=84]
+atlas = ExtResource( 3 )
+region = Rect2( 96, 96, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=85]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=39]
 atlas = ExtResource( 3 )
@@ -314,10 +327,15 @@ region = Rect2( 160, 64, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=22]
 animations = [ {
+"frames": [ SubResource( 83 ), ExtResource( 4 ), SubResource( 84 ), ExtResource( 4 ), SubResource( 85 ) ],
+"loop": false,
+"name": "Damage",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ), SubResource( 79 ), SubResource( 80 ), SubResource( 81 ), SubResource( 82 ) ],
 "loop": true,
 "name": "Roaming",
-"speed": 3.0
+"speed": 20.0
 }, {
 "frames": [ SubResource( 3 ) ],
 "loop": false,
@@ -327,12 +345,12 @@ animations = [ {
 "frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ) ],
 "loop": false,
 "name": "evilTurn",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
 "loop": false,
 "name": "peaceTurn",
-"speed": 5.0
+"speed": 8.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=23]
@@ -348,7 +366,7 @@ script = ExtResource( 1 )
 position = Vector2( 9.53674e-07, -1.90735e-06 )
 scale = Vector2( 1.96875, 1.71875 )
 frames = SubResource( 22 )
-animation = "Roaming"
+animation = "Damage"
 
 [node name="Bounce_hit_box" type="Area2D" parent="."]
 
@@ -364,7 +382,7 @@ shape = SubResource( 24 )
 wait_time = 0.5
 
 [node name="turningEvil" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 
 [connection signal="body_entered" from="Bounce_hit_box" to="." method="_on_Bounce_hit_box_body_entered"]
 [connection signal="timeout" from="RoombaPause" to="." method="_on_RoombaPause_timeout"]
