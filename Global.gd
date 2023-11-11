@@ -8,3 +8,6 @@ var item_picked_up = false
 var player_position = Vector2()
 var on_head = false
 var fish_bowl_dead = false
+
+#player
+var health = 3
