@@ -13,6 +13,7 @@ var current_hotbar = 1
 const BULLET = preload("res://Bullet/Bullet.tscn")
 var on_head_counter = 10
 var dash_lock = false
+var iFrame = false
 
 
 func _physics_process(delta):
@@ -108,14 +109,14 @@ func _dead():
 	Global.health = 3
 	
 func _damage():
-	Global.health -=1
+	if iFrame == false:
+		Global.health -=1
 	if Global.health <= 0:
 		_dead()
 	else:
 		$iFrames.start()
-		$CollisionPolygon2D.set_deferred("disabled",true)
+		iFrame = true
 
 
 func _on_iFrames_timeout():
-	$CollisionPolygon2D.set_deferred("disabled", false)
-	pass # Replace with function body.
+	iFrame = false

@@ -21,4 +21,4 @@ func _on_Despawn_timeout():
 
 func _on_ClawHitBox_body_entered(body):
 	if "Enemy" in body.name:
-		body._dead()
+		body._damage()

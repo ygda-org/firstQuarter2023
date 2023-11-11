@@ -4,13 +4,17 @@ extends KinematicBody2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+var health = 3
 var velocity = Vector2()
 var speed = 50
 var tempVelocity = Vector2()
 var stopped = false
+var peace = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Anim.play("evilTurn")
+	$turningEvil.start()
 	velocity = Vector2(speed,speed)
 
 
@@ -18,15 +22,14 @@ func _ready():
 #func _process(delta):
 #	pass\
 func _physics_process(delta):
-	move_and_slide(velocity)
-	if get_slide_count()  > 0:
-		for i in range(get_slide_count()):
-			if "Player" in get_slide_collision(i).collider.name:
-				get_slide_collision(i).collider._damage()
+	if peace == false:
+		move_and_slide(velocity)
 
 
 
 func _on_Bounce_hit_box_body_entered(body):
+	if "ayer" in body.name:
+		body._damage()
 	if stopped == false:
 		stopped = true
 		tempVelocity = velocity
@@ -48,8 +51,17 @@ func _on_RoombaPause_timeout():
 		else:
 			velocity = Vector2(-1*speed,speed)
 
-func _dead():
-	queue_free()
-	
-	
+func _damage():
+	$Anim.play("Damage")
+	health -= 1
+	if health == 0:
+		_dead()
 
+func _dead():
+	peace = true
+	$Anim.play("peaceTurn")
+
+
+func _on_turningEvil_timeout():
+	if peace == false:
+		$Anim.play("Roaming")

@@ -18,7 +18,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_Area2D_body_entered(body):
 	if "Enemy" in body.name:
-		body._dead()
+		body._damage()
 	if not "Player" in body.name:
 		queue_free()
 	if "Area2D" in body.name:

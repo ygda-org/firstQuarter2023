@@ -17,9 +17,6 @@ __meta__ = {
 [node name="EnemyTest" parent="." instance=ExtResource( 2 )]
 position = Vector2( 153, 174 )
 
-[node name="Item" parent="." instance=ExtResource( 3 )]
-position = Vector2( 270, 116 )
-
 [node name="Fish_Bowl" parent="." instance=ExtResource( 4 )]
 position = Vector2( 482, 230 )
 __meta__ = {
@@ -28,3 +25,6 @@ __meta__ = {
 
 [node name="roombaEnemy" parent="." instance=ExtResource( 5 )]
 position = Vector2( 155, 326 )
+
+[node name="Item" parent="." instance=ExtResource( 3 )]
+position = Vector2( 270, 116 )
