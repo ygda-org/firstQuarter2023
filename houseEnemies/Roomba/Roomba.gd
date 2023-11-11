@@ -8,13 +8,9 @@ var velocity = Vector2()
 var speed = 50
 var tempVelocity = Vector2()
 var stopped = false
-var ride = false
-var turned = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Anim.play("evilTurn")
-	$turningEvil.start()
 	velocity = Vector2(speed,speed)
 
 
@@ -22,23 +18,20 @@ func _ready():
 #func _process(delta):
 #	pass\
 func _physics_process(delta):
-	if turned == false:
-		move_and_slide(velocity)
-	
+	move_and_slide(velocity)
+	if get_slide_count()  > 0:
+		for i in range(get_slide_count()):
+			if "Player" in get_slide_collision(i).collider.name:
+				get_slide_collision(i).collider._damage()
 
 
 
 func _on_Bounce_hit_box_body_entered(body):
-	if turned == false:
-		if stopped == false:
-			stopped = true
-			tempVelocity = velocity
-			velocity = Vector2(0,0)
-			$RoombaPause.start()
-		else:
-			if ride == true:
-				body._roomba_ride()
-				queue_free()
+	if stopped == false:
+		stopped = true
+		tempVelocity = velocity
+		velocity = Vector2(0,0)
+		$RoombaPause.start()
 		
 
 
@@ -56,12 +49,7 @@ func _on_RoombaPause_timeout():
 			velocity = Vector2(-1*speed,speed)
 
 func _dead():
-	$Anim.play("peaceTurn")
-	turned = true
-	#### !!!! UNCOMMENT THIS LINE TO TURN THE DEFEATED ROOMBA INTO A SPEED BOOST
-	#ride = true
+	queue_free()
+	
+	
 
-
-func _on_turningEvil_timeout():
-	if turned == false:
-		$Anim.play("Roaming")
