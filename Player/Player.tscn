@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/cat_spritesheet_2.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -206,5 +207,14 @@ wait_time = 0.15
 [node name="iFrames" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="Stun" type="Timer" parent="."]
+
+[node name="TempStunIndicator" type="Sprite" parent="."]
+visible = false
+position = Vector2( -1, 6 )
+scale = Vector2( 1, 0.1 )
+texture = ExtResource( 3 )
+
 [connection signal="timeout" from="Dash_Length" to="." method="_on_Dash_Length_timeout"]
 [connection signal="timeout" from="iFrames" to="." method="_on_iFrames_timeout"]
+[connection signal="timeout" from="Stun" to="." method="_on_Stun_timeout"]
