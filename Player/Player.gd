@@ -14,9 +14,13 @@ const BULLET = preload("res://Bullet/Bullet.tscn")
 var on_head_counter = 10
 var dash_lock = false
 var iFrame = false
-
+var is_stunned = false
 
 func _physics_process(delta):
+	## CHECKS IF STUNNED (JELLYFISH)
+	if is_stunned:
+		return
+	
 	## CURSOR TRACKING
 	Global.player_position = position
 	mouse_position = get_global_mouse_position()
@@ -117,6 +121,15 @@ func _damage():
 		$iFrames.start()
 		iFrame = true
 
-
 func _on_iFrames_timeout():
 	iFrame = false
+
+func _stun(time):
+	is_stunned = true
+	$Stun.wait_time = time
+	$TempStunIndicator.visible = true # just for testing
+	$Stun.start()
+
+func _on_Stun_timeout():
+	is_stunned = false
+	$TempStunIndicator.visible = false # just for testing
