@@ -10,6 +10,9 @@ var speed = 50
 var tempVelocity = Vector2()
 var stopped = false
 var peace = false
+var lr = false
+var idle = true
+var in_damage = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,10 +55,15 @@ func _on_RoombaPause_timeout():
 			velocity = Vector2(-1*speed,speed)
 
 func _damage():
+	in_damage = true
 	$Anim.play("Damage")
 	health -= 1
+	if peace == true:
+		queue_free()
 	if health == 0:
 		_dead()
+	else:
+		$damFrame.start()
 
 func _dead():
 	peace = true
@@ -63,5 +71,24 @@ func _dead():
 
 
 func _on_turningEvil_timeout():
-	if peace == false:
-		$Anim.play("Roaming")
+	if idle == true:
+		idle = false
+		if peace == false:
+			$Anim.play("Roaming")
+			$flip.start()
+
+func _on_flip_timeout():
+	if peace == false and in_damage == false:
+		if lr == false:
+			lr = true
+			$Anim.flip_h = true
+		else:
+			lr = false
+			$Anim.flip_h = false
+		$flip.start()
+
+
+func _on_damFrame_timeout():
+	in_damage = false
+	$flip.start()
+	$Anim.play("Roaming")
