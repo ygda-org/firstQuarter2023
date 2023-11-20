@@ -13,12 +13,14 @@ func _ready():
 		if "Player" in i.name:
 			player = i
 	$MoveTimer.start()
+	$AttackTimer.start()
 
-func _physics_process(delta):
+func _physics_process(_delta):
+	can_attack = false
 	for i in get_slide_count():
-		if can_attack and "Player" in get_slide_collision(i).collider.name:
-			can_attack = false
-			$AttackTimer.start()
+		if "Player" in get_slide_collision(i).collider.name:
+			can_attack = true
+			break
 	
 	if ready == false:
 		return
@@ -41,8 +43,11 @@ func _damage():
 		queue_free()
 
 func _on_AttackTimer_timeout():
-	for i in get_slide_count():
-		if "Player" in get_slide_collision(i).collider.name:
-			get_slide_collision(i).collider._damage()
-			get_slide_collision(i).collider._stun(2)
-	can_attack = true
+	while !can_attack:
+		yield(get_tree(), "idle_frame")
+	_attack(player)
+
+func _attack(victim):
+	victim._damage()
+	victim._stun(2)
+	$AttackTimer.start()
