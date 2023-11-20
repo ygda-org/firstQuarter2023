@@ -17,11 +17,6 @@ func _dead():
 	Global.on_head = false
 	queue_free()
 
-
-	
-
-
-
 func _on_Area2D_body_entered(body):
 	if "Player" in body.name:
 		Global.on_head = true

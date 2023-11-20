@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://HOUSE/houseEnemies/Roomba/roombaEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://HOUSE/houseEnemies/Fish_Bowl/Fish_Bowl.tscn" type="PackedScene" id=3]
+[ext_resource path="res://HOUSE/houseEnemies/petDog/petDogEnemy.tscn" type="PackedScene" id=4]
+
+[node name="houseLevel" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 111, 367 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+
+[node name="roombaEnemy" parent="." instance=ExtResource( 1 )]
+position = Vector2( -139, 289 )
+
+[node name="petDogEnemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( -117, 451 )
+
+[node name="Fish_Bowl" parent="." instance=ExtResource( 3 )]
+position = Vector2( 223, 510 )
