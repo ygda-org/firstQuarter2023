@@ -1,0 +1,78 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Desert/lizard/lizard_tail/pixil-frame-5.png" type="Texture" id=1]
+[ext_resource path="res://Desert/lizard/lizard_tail/pixil-frame-2.png" type="Texture" id=2]
+[ext_resource path="res://Desert/lizard/lizard_tail/pixil-frame-4.png" type="Texture" id=3]
+[ext_resource path="res://Desert/lizard/lizard_tail/pixil-frame-0.png" type="Texture" id=4]
+[ext_resource path="res://Desert/lizard/lizard_blink/pixil-frame-0.png" type="Texture" id=5]
+[ext_resource path="res://Desert/lizard/lizard_tail/pixil-frame-7.png" type="Texture" id=6]
+[ext_resource path="res://Desert/lizard/lizard_tail/pixil-frame-3.png" type="Texture" id=7]
+[ext_resource path="res://Desert/lizard/lizard_tail/pixil-frame-6.png" type="Texture" id=8]
+[ext_resource path="res://Desert/lizard/lizard_hurt.png" type="Texture" id=9]
+[ext_resource path="res://Desert/lizard/lizard_blink/pixil-frame-1.png" type="Texture" id=10]
+[ext_resource path="res://Desert/lizard/lizard_walk/pixil-frame-3.png" type="Texture" id=11]
+[ext_resource path="res://Desert/lizard/lizard_walk/pixil-frame-1.png" type="Texture" id=12]
+[ext_resource path="res://Desert/lizard/lizard_walk/pixil-frame-0.png" type="Texture" id=13]
+[ext_resource path="res://Desert/lizard/lizard_tail/pixil-frame-1.png" type="Texture" id=14]
+[ext_resource path="res://Desert/lizard/lizard_walk/pixil-frame-2.png" type="Texture" id=15]
+[ext_resource path="res://Desert/lizard/lizard_idle.png" type="Texture" id=16]
+[ext_resource path="res://Desert/lizard/lizard_blink/pixil-frame-2.png" type="Texture" id=17]
+[ext_resource path="res://Desert/lizard/lizard_blink/pixil-frame-3.png" type="Texture" id=18]
+[ext_resource path="res://Desert/lizard/Lizard.gd" type="Script" id=19]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 10 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "blink",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": false,
+"name": "hurt",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": false,
+"name": "idle",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 14 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "tail",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "walk",
+"speed": 20.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 22.5, 5.5 )
+
+[node name="Enemy_Lizard" type="KinematicBody2D"]
+position = Vector2( 416, 178 )
+script = ExtResource( 19 )
+
+[node name="dieTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="moveTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="idleTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 9.5 )
+shape = SubResource( 2 )
+
+[connection signal="timeout" from="dieTimer" to="." method="_on_dieTimer_timeout"]
+[connection signal="timeout" from="moveTimer" to="." method="_on_moveTimer_timeout"]
+[connection signal="timeout" from="idleTimer" to="." method="_on_idleTimer_timeout"]
