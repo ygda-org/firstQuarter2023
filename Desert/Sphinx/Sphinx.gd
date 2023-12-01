@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
 var velocity = Vector2()
-var xdirection = 1
-var ydirection = 0
-var speed = 200
+var xdir = 0
+var ydir = 0
+var speed = 100
 
 var health = 5
 var idle = true
@@ -17,22 +17,19 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
 	if alive:
-		
-		velocity.x=xdirection
-		velocity.y=ydirection
-		
-		
+		velocity.x=xdir
+		velocity.y=ydir
 		if idle:
-			xdirection=0
-			ydirection=0
+			velocity.x=0
+			velocity.y=0
 			#$AnimatedSprite.play("tail")
-#		elif(xdirection!=0):
+		else:
 			#$AnimatedSprite.play("walk")
-			if xdirection==1:
+			if xdir==1:
 				$AnimatedSprite.flip_h = true
-			elif xdirection==-1:
+			elif xdir==-1:
 				$AnimatedSprite.flip_h = false
 		
 		#collision
@@ -48,16 +45,17 @@ func _physics_process(delta):
 		velocity = move_and_slide(velocity*speed)
 			
 func randomDirection():
-	while xdirection==0&&ydirection==0:
-		xdirection=round(rand_range(-1,1))
-		ydirection=round(rand_range(-1,1))
-
+	#while xdir==0 && ydir==0:
+	xdir=randi()%3-1
+	ydir=randi()%3-1
+		
 func attack():
-	var bullet = BULLET.instance()
-	bullet.rotation_degrees = global_position.direction_to(Global.player_position).angle()
-	get_parent().add_child(bullet)
-	bullet.position = $SphinxPosition.global_position
-	bullet.velocity = 10 * (global_position.direction_to(Global.player_position))
+	if alive:
+		var bullet = BULLET.instance()
+		bullet.rotation_degrees = global_position.direction_to(Global.player_position).angle()
+		get_parent().add_child(bullet)
+		bullet.position = $SphinxPosition.global_position
+		bullet.velocity = 10 * (global_position.direction_to(Global.player_position))
 
 func die():
 	alive=false
@@ -65,10 +63,9 @@ func die():
 	$dieTimer.start()
 
 func _damage():
-#	health-=1
-#	if health<=0:
-#		die()
-	die()
+	health-=1
+	if health<=0 and alive:
+		die()
 
 func _on_moveTimer_timeout():
 	attack()

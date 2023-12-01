@@ -5,7 +5,7 @@ var xdirection = 1
 var ydirection = 0
 var speed = 500
 
-var health = 5
+var health = 2
 var idle = true
 var alive = true
 
@@ -91,3 +91,8 @@ func _on_idleTimer_timeout():
 
 func _on_dieTimer_timeout():
 	queue_free()
+
+
+func _on_Area2D_body_entered(body):
+	if "Player" in body.name:
+		body._damage()

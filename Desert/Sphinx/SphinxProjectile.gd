@@ -15,5 +15,9 @@ func _on_Area2D_body_entered(body):
 		body._damage()
 	if not "Enemy_Sphinx" in body.name:
 		queue_free()
-		print(body.name)
-	
+		if "Enemy" in body.name:
+			body._damage()
+
+func _on_Area2D_area_entered(area):
+	if "Lizard" in area.name:
+		area._damage()
