@@ -1,0 +1,69 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://City/Taxi/Taxi.gd" type="Script" id=1]
+[ext_resource path="res://assets/Taxi/frame_13_taxi_explode.png" type="Texture" id=2]
+[ext_resource path="res://assets/Taxi/frame_15_taxi_explode.png" type="Texture" id=3]
+[ext_resource path="res://assets/Taxi/frame_16_taxi_explode.png" type="Texture" id=4]
+[ext_resource path="res://assets/Taxi/frame_04_taxi_explode.png" type="Texture" id=5]
+[ext_resource path="res://assets/Taxi/frame_06_taxi_explode.png" type="Texture" id=6]
+[ext_resource path="res://assets/Taxi/taxi1.png" type="Texture" id=7]
+[ext_resource path="res://assets/Taxi/frame_02_taxi_explode.png" type="Texture" id=8]
+[ext_resource path="res://assets/Taxi/frame_14_taxi_explode.png" type="Texture" id=9]
+[ext_resource path="res://assets/Taxi/frame_09_taxi_explode.png" type="Texture" id=10]
+[ext_resource path="res://assets/Taxi/frame_12_taxi_explode.png" type="Texture" id=11]
+[ext_resource path="res://assets/Taxi/frame_05_taxi_explode.png" type="Texture" id=12]
+[ext_resource path="res://assets/Taxi/frame_00_taxi_explode.png" type="Texture" id=13]
+[ext_resource path="res://assets/Taxi/frame_10_taxi_explode.png" type="Texture" id=14]
+[ext_resource path="res://assets/Taxi/frame_01_taxi_explode.png" type="Texture" id=15]
+[ext_resource path="res://assets/Taxi/frame_08_taxi_explode.png" type="Texture" id=16]
+[ext_resource path="res://assets/Taxi/frame_07_taxi_explode.png" type="Texture" id=17]
+[ext_resource path="res://assets/Taxi/taxi2.png" type="Texture" id=18]
+[ext_resource path="res://assets/Taxi/frame_03_taxi_explode.png" type="Texture" id=19]
+[ext_resource path="res://assets/Taxi/frame_11_taxi_explode.png" type="Texture" id=20]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 21, 8.5 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 8 ), ExtResource( 19 ), ExtResource( 5 ), ExtResource( 12 ), ExtResource( 6 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 10 ), ExtResource( 14 ), ExtResource( 20 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "dead",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "normal",
+"speed": 5.0
+} ]
+
+[node name="Taxi" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2, -0.5 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -22, 64 )
+frames = SubResource( 2 )
+animation = "dead"
+offset = Vector2( 22, -56 )
+
+[node name="TIcharge_move" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="TIdie" type="Timer" parent="."]
+one_shot = true
+
+[node name="TIpause" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="TIcharge_windup" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="TIcharge_move" to="." method="_on_TIcharge_move_timeout"]
+[connection signal="timeout" from="TIdie" to="." method="_on_TIdie_timeout"]
+[connection signal="timeout" from="TIpause" to="." method="_on_TIpause_timeout"]
+[connection signal="timeout" from="TIcharge_windup" to="." method="_on_TIcharge_windup_timeout"]
