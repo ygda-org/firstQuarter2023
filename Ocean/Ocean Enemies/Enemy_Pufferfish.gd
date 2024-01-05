@@ -10,8 +10,10 @@ var is_damagable = false
 var inflated = Vector2(1,1)
 var deflated = Vector2(0.75,0.75)
 var near_player = false
-const NEEDLE = preload("res://Ocean/Enemy_Pufferfish_Needle.tscn")
+const NEEDLE = preload("Enemy_Pufferfish_Needle.tscn")
 var needle = NEEDLE.instance()
+var detect_range = 500
+var facing = scale.x
 
 func _ready():
 	$CollisionShape2D.scale = inflated
@@ -23,6 +25,15 @@ func _ready():
 	$AttackTimer.start()
 
 func _physics_process(_delta):
+	if position.distance_to(player.position) > detect_range:
+		return
+	
+	if dir.x >= 0:
+		facing = 1
+	else:
+		facing = -1
+	scale.x = facing
+	
 	dir = position.direction_to(player.position)
 	velocity = speed*dir
 	velocity = move_and_slide(velocity)

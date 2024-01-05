@@ -1,0 +1,97 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Ocean/Ocean Enemies/Enemy_Jellyfish.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Ocean/Ocean Enemies/Enemy_Pufferfish.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Ocean/Ocean Enemies/Enemy_Seahorse.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Ocean/Ocean Enemies/Enemy_Boss_Octopus.tscn" type="PackedScene" id=5]
+
+[node name="OceanLevel" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 120 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( 80, 19 )
+current = true
+
+[node name="Enemy_Jellyfish" parent="." instance=ExtResource( 1 )]
+position = Vector2( 455, 332 )
+
+[node name="Enemy_Jellyfish2" parent="." instance=ExtResource( 1 )]
+position = Vector2( -382, -98 )
+
+[node name="Enemy_Seahorse" parent="." instance=ExtResource( 4 )]
+position = Vector2( -441, 402 )
+
+[node name="Enemy_Seahorse2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 604, 241 )
+scale = Vector2( -1, 1 )
+
+[node name="Enemy_Pufferfish" parent="." instance=ExtResource( 3 )]
+position = Vector2( 566, -118 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = -50.0
+margin_top = 722.0
+margin_right = 256.0
+margin_bottom = 1101.0
+text = "|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+\\/"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+margin_left = -52.0
+margin_top = 289.0
+margin_right = 254.0
+margin_bottom = 668.0
+text = "|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+\\/"
+
+[node name="Enemy_Boss_Octopus" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, 1200 )
