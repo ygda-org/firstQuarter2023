@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/b_m_front.PNG-1534d18fe53a5473cb52fa32e21bac93.stex"
+path="res://.import/b_m_front.PNG-010000c75c1619e259c8173ecda63dd6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Desert/Sphinx/sprites/projectiles/individual parts/b_m_front.PNG"
-dest_files=[ "res://.import/b_m_front.PNG-1534d18fe53a5473cb52fa32e21bac93.stex" ]
+source_file="res://Sphinx/sprites/projectiles/individual parts/b_m_front.PNG"
+dest_files=[ "res://.import/b_m_front.PNG-010000c75c1619e259c8173ecda63dd6.stex" ]
 
 [params]
 

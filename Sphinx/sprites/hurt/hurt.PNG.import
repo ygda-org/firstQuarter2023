@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hurt.PNG-96c2b8a28292392dae8006fa9a2a281e.stex"
+path="res://.import/hurt.PNG-2bf332e9fa15177d5325336f17dd5526.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Desert/Sphinx/sprites/hurt/hurt.PNG"
-dest_files=[ "res://.import/hurt.PNG-96c2b8a28292392dae8006fa9a2a281e.stex" ]
+source_file="res://Sphinx/sprites/hurt/hurt.PNG"
+dest_files=[ "res://.import/hurt.PNG-2bf332e9fa15177d5325336f17dd5526.stex" ]
 
 [params]
 
