@@ -1,0 +1,40 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Sprites/Rabid Dog/run1.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/RabidDog.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/Rabid Dog/run3.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Rabid Dog/run4.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Rabid Dog/run7.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/Rabid Dog/run5.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/Rabid Dog/run2.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/Rabid Dog/run6.png" type="Texture" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 77, 54 )
+
+[node name="RabidDog" type="KinematicBody2D"]
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 38, 38 )
+scale = Vector2( 2.9375, 2.97917 )
+frames = SubResource( 1 )
+animation = "attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 35, 14 )
+shape = SubResource( 2 )
