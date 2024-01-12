@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://City/Pigeon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://City/Pigeon.gd" type="Script" id=2]
+
+[node name="Pigeon" instance=ExtResource( 1 )]
+position = Vector2( 163, 122 )
+scale = Vector2( 5.01563, 3.84375 )
+script = ExtResource( 2 )
