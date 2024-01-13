@@ -2,8 +2,8 @@
 
 [ext_resource path="res://HOUSE/houseEnemies/Roomba/roombaEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://HOUSE/houseEnemies/Fish_Bowl/Fish_Bowl.tscn" type="PackedScene" id=3]
 [ext_resource path="res://HOUSE/houseEnemies/petDog/petDogEnemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://HOUSE/houseEnemies/fairyToy/fairyToy.tscn" type="PackedScene" id=5]
 
 [node name="houseLevel" type="Node2D"]
 
@@ -16,8 +16,8 @@ current = true
 [node name="roombaEnemy" parent="." instance=ExtResource( 1 )]
 position = Vector2( -139, 289 )
 
-[node name="Fish_Bowl" parent="." instance=ExtResource( 3 )]
-position = Vector2( 223, 510 )
-
 [node name="petDogEnemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( -520, 368 )
+
+[node name="fairyToy" parent="." instance=ExtResource( 5 )]
+position = Vector2( 138, 378 )

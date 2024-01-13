@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://City/Taxi/Taxi.gd" type="Script" id=1]
+[ext_resource path="res://City/Taxi.gd" type="Script" id=1]
 [ext_resource path="res://assets/Taxi/frame_13_taxi_explode.png" type="Texture" id=2]
 [ext_resource path="res://assets/Taxi/frame_15_taxi_explode.png" type="Texture" id=3]
 [ext_resource path="res://assets/Taxi/frame_16_taxi_explode.png" type="Texture" id=4]
@@ -20,6 +20,7 @@
 [ext_resource path="res://assets/Taxi/taxi2.png" type="Texture" id=18]
 [ext_resource path="res://assets/Taxi/frame_03_taxi_explode.png" type="Texture" id=19]
 [ext_resource path="res://assets/Taxi/frame_11_taxi_explode.png" type="Texture" id=20]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 21, 8.5 )

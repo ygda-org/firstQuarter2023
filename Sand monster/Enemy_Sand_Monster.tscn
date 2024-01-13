@@ -1,8 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Desert/Sand monster/sprites/IMG_8301.PNG" type="Texture" id=1]
-[ext_resource path="res://Desert/Sand monster/sprites/IMG_8475.PNG" type="Texture" id=2]
-[ext_resource path="res://Desert/Sand monster/Enemy_Sand_Monster.gd" type="Script" id=3]
+[ext_resource path="res://Sand monster/sprites/IMG_8301.PNG" type="Texture" id=1]
+[ext_resource path="res://Sand monster/sprites/IMG_8475.PNG" type="Texture" id=2]
+[ext_resource path="res://Sand monster/Enemy_Sand_Monster.gd" type="Script" id=3]
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
