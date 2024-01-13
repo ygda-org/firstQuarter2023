@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/roar_2.PNG-e000521fdcc36a735d971f3b8009a264.stex"
+path="res://.import/roar_2.PNG-38a30d7fb1a7ee951e05c906f995d987.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Desert/Sphinx/sprites/attack (roar)/roar_2.PNG"
-dest_files=[ "res://.import/roar_2.PNG-e000521fdcc36a735d971f3b8009a264.stex" ]
+source_file="res://Sphinx/sprites/attack (roar)/roar_2.PNG"
+dest_files=[ "res://.import/roar_2.PNG-38a30d7fb1a7ee951e05c906f995d987.stex" ]
 
 [params]
 
