@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/IMG_8906.PNG-22cf08887d758bb440ffc44d9a4c86b6.stex"
+path="res://.import/IMG_8906.PNG-5e50fc96a82a55d5823eb0ec6c5670b3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Desert/Sand monster/sprites/IMG_8906.PNG"
-dest_files=[ "res://.import/IMG_8906.PNG-22cf08887d758bb440ffc44d9a4c86b6.stex" ]
+source_file="res://Sand monster/sprites/IMG_8906.PNG"
+dest_files=[ "res://.import/IMG_8906.PNG-5e50fc96a82a55d5823eb0ec6c5670b3.stex" ]
 
 [params]
 

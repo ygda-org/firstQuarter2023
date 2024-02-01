@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/circle.png-01aa61707090eb73a710abb4604ea6d7.stex"
+path="res://.import/circle.png-72c1dde2263370dda498c8888275b2cd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Desert/Sand monster/sprites/circle.png"
-dest_files=[ "res://.import/circle.png-01aa61707090eb73a710abb4604ea6d7.stex" ]
+source_file="res://Sand monster/sprites/circle.png"
+dest_files=[ "res://.import/circle.png-72c1dde2263370dda498c8888275b2cd.stex" ]
 
 [params]
 

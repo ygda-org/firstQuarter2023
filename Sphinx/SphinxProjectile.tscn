@@ -1,9 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Desert/Sphinx/SphinxProjectile.gd" type="Script" id=1]
-[ext_resource path="res://Desert/Sphinx/sprites/projectiles/individual parts/b_l_front.PNG" type="Texture" id=2]
-[ext_resource path="res://Desert/Sphinx/sprites/projectiles/individual parts/b_m_front.PNG" type="Texture" id=3]
-[ext_resource path="res://Desert/Sphinx/sprites/projectiles/individual parts/b_s_front.PNG" type="Texture" id=4]
+[ext_resource path="res://Sphinx/sprites/projectiles/individual parts/b_l_front.PNG" type="Texture" id=2]
+[ext_resource path="res://Sphinx/sprites/projectiles/individual parts/b_m_front.PNG" type="Texture" id=3]
+[ext_resource path="res://Sphinx/sprites/projectiles/individual parts/b_s_front.PNG" type="Texture" id=4]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 

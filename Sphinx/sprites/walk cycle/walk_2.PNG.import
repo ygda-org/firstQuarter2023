@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/walk_2.PNG-207b7791f78e3c48d24570bb9f66c9fe.stex"
+path="res://.import/walk_2.PNG-bc9ac76b1e480e7752a5556f3975c611.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Desert/Sphinx/sprites/walk cycle/walk_2.PNG"
-dest_files=[ "res://.import/walk_2.PNG-207b7791f78e3c48d24570bb9f66c9fe.stex" ]
+source_file="res://Sphinx/sprites/walk cycle/walk_2.PNG"
+dest_files=[ "res://.import/walk_2.PNG-bc9ac76b1e480e7752a5556f3975c611.stex" ]
 
 [params]
 
