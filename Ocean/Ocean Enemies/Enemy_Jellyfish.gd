@@ -7,6 +7,8 @@ var ready = false
 var player = null
 var can_attack = true
 var health = 3
+var detect_range = 500
+var facing = scale.x
 
 func _ready():
 	for i in get_parent().get_children():
@@ -24,6 +26,15 @@ func _physics_process(_delta):
 	
 	if ready == false:
 		return
+	
+	if position.distance_to(player.position) > detect_range:
+		return
+	
+	if dir.x >= 0:
+		facing = 1
+	else:
+		facing = -1
+	scale.x = facing
 	
 	dir = position.direction_to(player.position)
 	velocity = speed*dir
